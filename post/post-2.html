@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>¿Qué es el aprendizaje automático? | Bitácora IA</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../post/css/post.css" />
+</head>
+
+<body class="bg-light text-dark">
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-xl-10 mx-auto">
+                <a href="../index.html#bitacora-ia" class="btn btn-outline-secondary mb-3">← Volver a Bitácora IA</a>
+                <h1 class="fw-bold">¿Qué es el aprendizaje automático?</h1>
+                <p class="lead text-muted">Una guía completa para entender cómo las máquinas aprenden de los datos y se
+                    adaptan al mundo real.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <p>El <strong>aprendizaje automático</strong> (en inglés, <em>machine learning</em> o ML) es una
+                            rama fundamental de la inteligencia artificial. Se basa en la idea de que una computadora
+                            puede <strong>aprender patrones a partir de datos</strong> sin que un programador le diga
+                            paso a paso lo que debe hacer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold">🤖 ¿Cómo funciona?</h2>
+                        <p>En lugar de escribir reglas manuales, el aprendizaje automático <strong>entrena un
+                                modelo</strong> mostrándole ejemplos. El modelo analiza esos datos y construye una
+                            representación matemática que le permite hacer predicciones o tomar decisiones.</p>
+                        <p>Ejemplo: si queremos que una máquina reconozca imágenes de gatos, no le decimos "un gato
+                            tiene orejas triangulares y bigotes". En su lugar, le damos <strong>miles de fotos de gatos
+                                y no gatos</strong>. El modelo aprende a reconocer patrones visuales asociados a gatos y
+                            puede identificar nuevos gatos sin haberlos visto antes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold">📈 ¿Qué tipos de aprendizaje existen?</h2>
+                        <ul>
+                            <li><strong>Aprendizaje supervisado:</strong> Se entrena el modelo con datos etiquetados
+                                (ej. imágenes con su categoría). Es como un profesor que da ejemplos con respuestas.
+                            </li>
+                            <li><strong>Aprendizaje no supervisado:</strong> El modelo analiza datos sin etiquetas.
+                                Busca agrupar, reducir dimensiones o descubrir estructuras ocultas (ej. segmentar
+                                clientes).</li>
+                            <li><strong>Aprendizaje por refuerzo:</strong> El modelo aprende mediante prueba y error,
+                                recibiendo recompensas o castigos (usado en juegos, robots y simulaciones).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold">🔧 Algoritmos populares</h2>
+                        <p>Los siguientes algoritmos se utilizan según el tipo de problema:</p>
+                        <ul>
+                            <li><strong>Árboles de decisión:</strong> Dividen los datos en ramas lógicas. Fáciles de
+                                entender, pero pueden sobreajustarse.</li>
+                            <li><strong>Máquinas de soporte vectorial (SVM):</strong> Separan datos con una línea óptima
+                                (o hiperplano) y funcionan bien con pocas muestras.</li>
+                            <li><strong>k-Vecinos más cercanos (k-NN):</strong> Clasifica en base a los datos más
+                                cercanos. Simple, pero lento con grandes volúmenes.</li>
+                            <li><strong>Redes neuronales:</strong> Inspiradas en el cerebro humano. Excelentes para
+                                imágenes, texto y sonido. Se convierten en <strong>deep learning</strong> cuando tienen
+                                muchas capas.</li>
+                            <li><strong>Regresión lineal y logística:</strong> Modelos estadísticos clásicos, ideales
+                                para relaciones simples entre variables.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold">🧠 ¿Qué es el deep learning?</h2>
+                        <p>El <strong>aprendizaje profundo (deep learning)</strong> es una subárea del ML que usa
+                            <strong>redes neuronales con muchas capas</strong>. Gracias al aumento de datos y poder de
+                            cómputo, estas redes pueden aprender tareas extremadamente complejas, como reconocer caras,
+                            conducir autos o traducir idiomas automáticamente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold">🧪 ¿Cómo se entrena un modelo?</h2>
+                        <p>Entrenar un modelo de ML implica varios pasos:</p>
+                        <ol>
+                            <li><strong>Recolección de datos:</strong> Lo más importante. Sin datos de calidad, no hay
+                                modelo útil.</li>
+                            <li><strong>Preprocesamiento:</strong> Limpieza, normalización, transformación de los datos.
+                            </li>
+                            <li><strong>Entrenamiento:</strong> El algoritmo aprende a partir de los datos usando
+                                funciones de pérdida y optimización.</li>
+                            <li><strong>Evaluación:</strong> Se prueba con datos que el modelo no ha visto (conjunto de
+                                validación o test).</li>
+                            <li><strong>Ajuste (tuning):</strong> Modificar hiperparámetros o arquitectura para mejorar
+                                el rendimiento.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold">💻 Lenguajes y librerías comunes</h2>
+                        <p>Los ingenieros de ML suelen trabajar con:</p>
+                        <ul>
+                            <li><strong>Python:</strong> El estándar de facto. Tiene cientos de librerías como:
+                                <ul>
+                                    <li><code>scikit-learn</code> – para modelos clásicos.</li>
+                                    <li><code>TensorFlow</code> y <code>Keras</code> – redes neuronales y deep learning.
+                                    </li>
+                                    <li><code>PyTorch</code> – muy usado en investigación y producción.</li>
+                                    <li><code>Pandas</code> y <code>NumPy</code> – manipulación de datos.</li>
+                                    <li><code>Matplotlib</code> y <code>Seaborn</code> – visualización.</li>
+                                </ul>
+                            </li>
+                            <li><strong>R:</strong> Popular en estadística y ciencia de datos tradicional.</li>
+                            <li><strong>Julia:</strong> Emergente por su velocidad, aún en crecimiento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold">🌍 Aplicaciones reales del aprendizaje automático</h2>
+                        <ul>
+                            <li><strong>Filtros de spam</strong> en emails.</li>
+                            <li><strong>Recomendaciones</strong> en YouTube, Spotify, Netflix.</li>
+                            <li><strong>Reconocimiento facial</strong> en cámaras y teléfonos.</li>
+                            <li><strong>Diagnósticos médicos</strong> a partir de imágenes o historiales.</li>
+                            <li><strong>Análisis de sentimientos</strong> en redes sociales.</li>
+                            <li><strong>Vehículos autónomos</strong> y asistentes virtuales.</li>
+                        </ul>
+                        <div class="alert alert-warning mt-3" role="alert">
+                            ⚠️ <strong>Importante:</strong> Un modelo de aprendizaje automático no siempre es preciso.
+                            Puede tener sesgos si los datos están desequilibrados o mal representados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 mx-auto">
+                <div class="card shadow-sm animate-on-scroll">
+                    <div class="card-body">
+                        <p>En resumen, el aprendizaje automático es una herramienta poderosa que está transformando la
+                            manera en que interactuamos con la tecnología. Entender sus fundamentos es clave para
+                            aprovechar su potencial y crear soluciones innovadoras.</p>
+                        <p>¿Quieres profundizar? Explora nuestros otros posts y recursos en <a
+                                href="../index.html#bitacora-ia">Bitácora IA</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="../post/js/post.js"></script>
+</body>
+
+</html>
