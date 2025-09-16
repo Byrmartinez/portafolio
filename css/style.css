@@ -55,7 +55,7 @@ section .section-content {
 /* Estilos modo claro */
 body[data-bs-theme="light"] {
     background: linear-gradient(var(--hero-overlay-light), var(--hero-overlay-light)),
-        url('assets/img/fondo/fondo2.png') no-repeat center center fixed;
+        url('../assets/img/fondo/fondo2.png') no-repeat center center fixed;
     background-size: cover;
     color: var(--text-color-light);
 }
@@ -102,7 +102,7 @@ body[data-bs-theme="light"] .texto-1 {
 /* Estilos modo oscuro */
 body[data-bs-theme="dark"] {
     background: linear-gradient(var(--hero-overlay-light), var(--hero-overlay-light)),
-        url('assets/img/fondo/FONDO1.png') no-repeat center center fixed;
+        url('../assets/img/fondo/FONDO1.png') no-repeat center center fixed;
     background-size: cover;
     color: var(--text-color-dark);
 }
