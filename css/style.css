@@ -17,7 +17,7 @@
     --hero-overlay-dark: rgba(0, 0, 0, 0.6);
 
     --font-family-sans-serif: 'Inter', sans-serif;
-    --transition-speed: 0.3s;
+    --transition-speed: 0.8s;
 }
 
 html {
@@ -26,39 +26,59 @@ html {
 
 body {
     font-family: var(--font-family-sans-serif);
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    transition: background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease,
+        background-image 1.2s ease;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Pseudo-elemento para transición suave de fondos */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    pointer-events: none;
+}
+
+/* Estilos modo oscuro */
+body[data-bs-theme="dark"] {
+    background: url('../assets/img/fondo/FONDO1.png') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color-dark);
+}
+
+body[data-bs-theme="light"] {
+    background: url('../assets/img/fondo/fondo2.png') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color-dark);
 }
 
 section {
     padding-top: 80px;
     padding-bottom: 80px;
-    min-height: 80vh;
-    min-width: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-section .section-content {
-    width: 80%;
-    max-width: 1140px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 0 auto;
+/* Hero section específico para mantener altura completa */
+#hero {
+    min-height: 100vh;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-/* Estilos modo claro */
-body[data-bs-theme="light"] {
-    background: linear-gradient(var(--hero-overlay-light), var(--hero-overlay-light)),
-        url('../assets/img/fondo/fondo2.png') no-repeat center center fixed;
-    background-size: cover;
-    color: var(--text-color-light);
-}
 
 body[data-bs-theme="light"] .stick-footer {
     color: white;
@@ -99,13 +119,7 @@ body[data-bs-theme="light"] .texto-1 {
     color: white;
 }
 
-/* Estilos modo oscuro */
-body[data-bs-theme="dark"] {
-    background: linear-gradient(var(--hero-overlay-light), var(--hero-overlay-light)),
-        url('../assets/img/fondo/FONDO1.png') no-repeat center center fixed;
-    background-size: cover;
-    color: var(--text-color-dark);
-}
+
 
 body[data-bs-theme="dark"] #mainNavbar {
     background-color: var(--navbar-bg-dark);
@@ -206,9 +220,14 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+body[data-bs-theme="light"] .about-typewriter-text {
+    color: black;
+}
+
+
+
 /* Hero Section Específico */
 #hero {
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -294,6 +313,8 @@ body[data-bs-theme="dark"] .project-card:hover {
 .project-card img {
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    width: 100%;
+    /* Asegurar que la imagen ocupe todo el ancho disponible */
 }
 
 /* Títulos de Sección */
@@ -354,8 +375,6 @@ body[data-bs-theme="dark"] .section-title::after {
 
 /* Clases de utilidad */
 .r-background {
-
-
     color: #fff;
     opacity: 0.8;
 }
@@ -366,7 +385,7 @@ main {
     padding-bottom: 70px;
 }
 
-/* Responsividad */
+/* Responsividad mejorada */
 @media (max-width: 991.98px) {
     .navbar-collapse {
         background-color: var(--navbar-bg-light);
@@ -383,6 +402,11 @@ main {
     section {
         padding: 60px 0;
     }
+
+    #hero {
+        min-height: 90vh;
+        /* Reducir altura en tablets */
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -398,109 +422,166 @@ main {
         font-size: 1.1rem;
     }
 
-    .project-card-container,
-    .animated-on-scroll {
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #contacto .animated-on-scroll {
-        max-width: 100%;
-    }
-
     section {
         padding: 40px 0;
+    }
+
+    #hero {
+        min-height: 100vh;
+        /* Mantener altura completa en móvil */
+        padding-top: 60px;
+        /* Ajustar para navbar */
+    }
+
+    .matrix-effect {
+        font-size: 2rem;
+        /* Reducir tamaño en móvil */
+    }
+
+    .tech-icons-container {
+        gap: 10px;
+        /* Reducir espacio entre iconos en móvil */
+    }
+
+    .tech-icon {
+        font-size: 2rem !important;
+        /* Reducir tamaño de iconos en móvil */
+    }
+}
+
+/* Media query para móviles muy pequeños */
+@media (max-width: 575.98px) {
+    section {
+        padding: 30px 0;
+    }
+
+    .display-3 {
+        font-size: 2rem;
+    }
+
+    .matrix-effect {
+        font-size: 1.8rem;
+    }
+
+    .lead.fs-4 {
+        font-size: 1rem;
+    }
+
+    .tech-icons-container {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tech-icon {
+        font-size: 1.8rem !important;
+        margin: 0.2rem !important;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    /* Ajustes específicos para el hero */
+    #hero {
+        padding-top: 80px;
+        padding-bottom: 20px;
+    }
+
+    /* Ajustes para la sección de contacto */
+    #contacto .d-grid {
+        gap: 1rem !important;
+    }
+
+    /* Asegurar que las imágenes no se desborden */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Media query para dispositivos extra pequeños */
+@media (max-width: 375px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .matrix-effect {
+        font-size: 1.5rem;
+    }
+
+    .lead.fs-4 {
+        font-size: 0.95rem;
+    }
+
+    .tech-icon {
+        font-size: 1.5rem !important;
     }
 }
 
 
 footer.fixed-bottom {
-
     height: auto;
-
 }
 
 /* Estilos para el contenedor de íconos de tecnología */
 .tech-icons-container {
     display: flex;
-    /* Usa flexbox para alinear los íconos */
     flex-wrap: wrap;
-    /* Permite que los íconos pasen a la siguiente línea en pantallas pequeñas */
     justify-content: center;
-    /* Centra los íconos horizontalmente */
     gap: 15px;
-    /* Espacio entre los íconos */
-    /* Propiedad para la animación de entrada de los íconos */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .tech-icons-container.visible {
-    /* Esta clase se añadiría con JS */
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Estilos para los íconos individuales (opcional) */
+/* Estilos para los íconos individuales */
 .tech-icon {
-    /* Asegúrate de que el color del ícono siga el tema o sea un color que contraste bien */
     color: #fff;
-    /* Ejemplo: usar color primario */
     transition: transform 0.3s ease, color 0.3s ease;
-    /* Transición al pasar el mouse */
     cursor: pointer;
-    /* Indica que pueden ser interactivos (aunque no tengan link) */
 }
-
 
 body[data-bs-theme="dark"] .tech-icon {
     color: var(--primary-color-dark);
-    /* Color primario en tema oscuro */
 }
 
 .tech-icon-proy {
-
     transition: transform 0.6s ease, color 0.6s ease;
-    /* Transición al pasar el mouse */
     cursor: pointer;
-    /* Indica que pueden ser interactivos (aunque no tengan link) */
 }
 
 .tech-icon-proy:hover {
     transform: scale(1.5);
-    /* Un pequeño zoom al pasar el mouse */
 }
 
-/* Animación de tipo "Typewriter" (principalmente JS, pero CSS para el cursor) */
+/* Animación de tipo "Typewriter" */
 .about-typewriter-text {
-    /* Inicialmente puede estar vacío o con un loader si el texto completo está en data-attribute */
     min-height: 1.5em;
-    /* Evita que el contenedor colapse mientras se escribe */
     position: relative;
-    /* Necesario para posicionar el cursor */
     display: inline-block;
-    /* O flex/block dependiendo de cómo quieras que se comporte */
     overflow: hidden;
-    /* Oculta el cursor al final o antes de empezar */
-    /* La animación de "escritura" y la gestión del contenido se hacen con JS */
 }
 
-/* Cursor que parpadea al final del texto */
 .about-typewriter-text::after {
     content: '|';
-    /* El carácter del cursor */
     display: inline-block;
     animation: blink-caret 0.75s step-end infinite;
-    /* Animación de parpadeo */
     margin-left: 3px;
-    /* Espacio entre el texto y el cursor */
     color: inherit;
-    /* Hereda el color del texto */
 }
 
-/* Animación de parpadeo del cursor */
 @keyframes blink-caret {
 
     from,
@@ -511,13 +592,7 @@ body[data-bs-theme="dark"] .tech-icon {
     50% {
         border-color: currentColor;
     }
-
-    /* Usa el color actual del texto */
 }
-
-/* Opcional: Ocultar el cursor cuando la animación de escritura JS no está activa */
-/* .about-typewriter-text:not(.typing)::after { display: none; } */
-
 
 /* Animación sutil de movimiento continuo */
 @keyframes subtle-float {
@@ -529,26 +604,15 @@ body[data-bs-theme="dark"] .tech-icon {
         transform: translateY(-8px);
     }
 
-    /* Ajusta la distancia del movimiento */
     100% {
         transform: translateY(0);
     }
 }
 
-/* Aplicar la animación sutil. Puedes aplicarla a: */
-/* 1. La fila completa con el fondo r-background: */
 .r-background {
-
-
-    /* Asegúrate de que el color del texto se herede del body/tema */
-    /* opacity: 0.8; /* ¡Evita poner opacity aquí si no quieres que el texto sea semi-transparente! */
-
     animation: subtle-float 4s ease-in-out infinite;
-    /* Aplica la animación */
-    /* Combina con la transición animated-on-scroll */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out, animation 4s ease-in-out infinite;
 }
-
 
 @keyframes icon-bounce-in {
     0% {
@@ -595,8 +659,7 @@ body[data-bs-theme="dark"] .tech-icon {
     animation: subtle-float 4s ease-in-out infinite;
 }
 
-/*--------------------------------------------------*/
-/* EFECTO 2: MATRIX DIGITAL RAIN */
+/* EFECTO MATRIX DIGITAL RAIN */
 .matrix-effect {
     font-size: 3.5rem;
     font-weight: bold;
@@ -605,10 +668,7 @@ body[data-bs-theme="dark"] .tech-icon {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: matrix-glow 6s ease-in-out infinite, subtle-float 6s ease-in infinite;
-
 }
-
-
 
 @keyframes matrix-glow {
 
@@ -622,15 +682,13 @@ body[data-bs-theme="dark"] .tech-icon {
     }
 }
 
-
-/*--------------------------------------------------*/
-/* EFECTO 6: LOADING BUTTON */
+/* LOADING BUTTON */
 .loading-button {
     background: #007bff;
     border: none;
     position: relative;
     overflow: hidden;
-    border: 50px;
+    border-radius: 50px;
 }
 
 .loading-button::after {
@@ -643,8 +701,6 @@ body[data-bs-theme="dark"] .tech-icon {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     animation: loading-sweep 2.5s ease-in-out infinite;
 }
-
-
 
 .loading-button:hover::after {
     animation-duration: 0.8s;
@@ -663,7 +719,6 @@ body[data-bs-theme="dark"] .tech-icon {
 
 .slow-flip {
     animation: flip 8s linear infinite;
-    /* Cambia 8s por 15s si quieres más lento */
     transform-style: preserve-3d;
 }
 

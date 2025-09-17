@@ -48,12 +48,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Manejar clic en el logo/brand para volver al inicio
     if (brandLink) {
         brandLink.addEventListener('click', (e) => {
-            if (brandLink.getAttribute('href') === '#') {
+            if (brandLink.getAttribute('href') === '#hero') {
                 e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                const heroSection = document.getElementById('hero');
+                if (heroSection) {
+                    heroSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     }
@@ -87,16 +90,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Escuchar evento de scroll para actualizar enlaces activos
     window.addEventListener('scroll', updateActiveNavLink);
 
-    // Animaciones al hacer scroll
+    // Animaciones al hacer scroll mejoradas para responsividad
     const checkVisibility = () => {
         const animatedElements = document.querySelectorAll('.animated-on-scroll');
+        const windowHeight = window.innerHeight;
 
         animatedElements.forEach((element, index) => {
             const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150; // Cuántos píxeles deben estar visibles antes de animar
+            const elementVisible = windowHeight > 768 ? 150 : 100; // Ajustar para móviles
 
-            if (elementTop < window.innerHeight - elementVisible) {
-                element.style.transitionDelay = `${index % 5 * 0.1}s`; // Stagger effect (limitado a grupos de 5)
+            if (elementTop < windowHeight - elementVisible) {
+                element.style.transitionDelay = `${index % 5 * 0.1}s`; // Stagger effect
                 element.classList.add('visible');
             } else {
                 element.classList.remove('visible');
@@ -137,9 +141,21 @@ document.addEventListener('DOMContentLoaded', function () {
     themeToggle.addEventListener('click', () => {
         let currentTheme = body.getAttribute('data-bs-theme');
         let newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        body.setAttribute('data-bs-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
+
+        // Iniciar transición
+        body.classList.add('theme-transitioning');
+
+        // Cambiar tema después de un pequeño delay
+        setTimeout(() => {
+            body.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+
+            // Remover clase de transición después de que termine
+            setTimeout(() => {
+                body.classList.remove('theme-transitioning');
+            }, 1200);
+        }, 50);
     });
 
     // Inicializar tema
@@ -158,42 +174,34 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 100);
         }
     }
-    // Observador para elementos que simplemente se animan al entrar en vista
+
+    // Observador mejorado para elementos que se animan al entrar en vista
     const animateOnScrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Dejar de observar una vez que la animación se ha disparado
-                // observer.unobserve(entry.target); // Descomentar si solo quieres que anime la primera vez
             } else {
-                // Opcional: quitar la clase 'visible' si el elemento sale de vista
-                // entry.target.classList.remove('visible'); // Descomentar si quieres que se resetee al salir
+                // Opcional: resetear animación al salir de vista
+                // entry.target.classList.remove('visible');
             }
         });
     }, {
-        threshold: 0.1, // El 10% del elemento debe ser visible para activarse
-        rootMargin: '0px 0px -50px 0px' // Empezar la animación 50px antes de que llegue al final del viewport
+        threshold: 0.1,
+        rootMargin: window.innerWidth <= 768 ? '0px 0px -30px 0px' : '0px 0px -50px 0px' // Ajustar para móviles
     });
 
     // Seleccionar todos los elementos a animar al hacer scroll
     const elementsToAnimate = document.querySelectorAll('.animated-on-scroll, .project-card-container');
     elementsToAnimate.forEach(element => {
-        // Asegurarse de que los elementos estén invisibles por defecto si no lo están en CSS
-        // element.style.opacity = 0; // No necesario si tu CSS ya los oculta inicialmente
         animateOnScrollObserver.observe(element);
     });
-
-
-    // ==================================================
-    // 3. Efecto Typewriter y Animación de Íconos (Integrado con Scroll Animation)
-    // ==================================================
 
     // Función para el efecto de máquina de escribir
     function typeText(element, text, speed, callback) {
         let i = 0;
-        element.classList.remove('invisible'); // ⬅️ Muy importante
-        element.textContent = ''; // Limpiar contenido inicial
-        element.classList.add('typing'); // Opcional
+        element.classList.remove('invisible');
+        element.textContent = '';
+        element.classList.add('typing');
 
         function type() {
             if (i < text.length) {
@@ -201,84 +209,61 @@ document.addEventListener('DOMContentLoaded', function () {
                 i++;
                 setTimeout(type, speed);
             } else {
-                element.classList.remove('typing'); // Opcional
+                element.classList.remove('typing');
                 if (callback) callback();
             }
         }
         type();
     }
 
-
     // Observador específico para la columna de texto de "Sobre Mí"
     const aboutTextObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            // Identificar la columna de texto de la sección Sobre Mí
-            const aboutTextCol = entry.target.querySelector('.col-md-8.animated-on-scroll'); // Ajusta el selector si cambias las clases
+            const aboutTextCol = entry.target.querySelector('.col-md-8.animated-on-scroll');
 
-            // Asegurarse de que sea la columna de texto y que esté entrando en vista
             if (entry.isIntersecting && aboutTextCol && !aboutTextCol.dataset.typed) {
-                // Añadir la clase visible para la animación CSS inicial (fade-in/slide-up)
                 aboutTextCol.classList.add('visible');
 
-                // Esperar un poco después de la animación CSS inicial para empezar el typeo
-                // Ajusta el tiempo según la duración de tu CSS transition (ej: 0.6s)
-                const delayBeforeTyping = 700; // ms
-                const typingSpeed = 50; // Velocidad del typeo en ms por carácter
+                const delayBeforeTyping = 700;
+                const typingSpeed = window.innerWidth <= 768 ? 30 : 50; // Más rápido en móviles
 
                 setTimeout(() => {
                     const typewriterElement = aboutTextCol.querySelector('.about-typewriter-text');
                     const textToType = typewriterElement.dataset.typewriterText;
                     const techIconsContainer = aboutTextCol.querySelector('.tech-icons-container');
 
-
                     if (typewriterElement && textToType) {
-                        // Ejecutar el typeo
                         typeText(typewriterElement, textToType, typingSpeed, () => {
-                            // Callback al finalizar el typeo
                             if (techIconsContainer) {
-                                // Disparar la animación de los íconos
                                 techIconsContainer.classList.add('visible');
-                                // Opcional: animar íconos individualmente (ver CSS comentado)
-                                // animateIndividualIcons(techIconsContainer.querySelectorAll('.tech-icon'));
                             }
                         });
-                        // Marcar como "tipiado" para no repetir
                         aboutTextCol.dataset.typed = 'true';
                     }
                 }, delayBeforeTyping);
 
-                // Dejar de observar esta columna una vez activada
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.5 // Ajusta si quieres que se active cuando la sección esté más visible
+        threshold: window.innerWidth <= 768 ? 0.3 : 0.5 // Threshold más bajo para móviles
     });
 
-    // Observar la fila principal de la sección "Sobre Mí" para saber cuándo está visible
-    const aboutSectionRow = document.querySelector('#sobre-mi .row.r-background'); // Asegúrate de que este selector apunte al contenedor correcto
+    // Observar la fila principal de la sección "Sobre Mí"
+    const aboutSectionRow = document.querySelector('#sobre-mi .row.r-background');
     if (aboutSectionRow) {
         aboutTextObserver.observe(aboutSectionRow);
     }
-
-
-    // ==================================================
-    // 4. Resaltar Enlace de Navegación Activo
-    // ==================================================
-
-
 
     // Observador para secciones para actualizar el enlace activo
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const sectionId = entry.target.id;
-                // Eliminar clase 'active' de todos los enlaces
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     link.removeAttribute('aria-current');
                 });
-                // Añadir clase 'active' al enlace correspondiente
                 const correspondingLink = document.querySelector(`#mainNavbar .nav-link[href="#${sectionId}"]`);
                 if (correspondingLink) {
                     correspondingLink.classList.add('active');
@@ -287,9 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }, {
-        // Ajusta estos valores para determinar cuándo una sección se considera "activa"
-        // threshold: 0.7, // Una sección está activa cuando al menos el 70% es visible
-        rootMargin: '-50% 0px -50% 0px' // Considera activa la sección que cruza la línea media del viewport
+        rootMargin: '-50% 0px -50% 0px'
     });
 
     // Observar cada sección
@@ -297,33 +280,37 @@ document.addEventListener('DOMContentLoaded', function () {
         sectionObserver.observe(section);
     });
 
-
-
+    // Navegación suave mejorada
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            // Solo prevenir el default si el hash apunta a una sección existente
             try {
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     e.preventDefault();
                     target.scrollIntoView({
                         behavior: 'smooth',
-                        block: 'start' // O 'center', 'end'. 'start' es común para secciones
+                        block: 'start'
                     });
+
+                    // Cerrar menú móvil si está abierto
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                        if (bsCollapse) {
+                            bsCollapse.hide();
+                        }
+                    }
                 }
             } catch (error) {
                 console.error("Error scrolling to section:", error);
-                // Si hay un error (ej: selector inválido), permitir el comportamiento por defecto
             }
-
         });
     });
 
-    // Manejar específicamente el botón "Mis Proyectos" si usa data-navigate-to-section
-    const projectsButton = document.querySelector('.animated-hero-button[data-navigate-to-section="1"]');
+    // Manejar específicamente el botón "Mis Proyectos"
+    const projectsButton = document.querySelector('[data-navigate-to-section="1"]');
     if (projectsButton) {
         projectsButton.addEventListener('click', function (e) {
-            // En este caso, sabemos que queremos ir a #proyectos
             try {
                 const target = document.querySelector('#proyectos');
                 if (target) {
@@ -338,24 +325,44 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-});
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const el = entry.target;
-            el.classList.remove('hidden');
-            el.classList.add('visible');
-            startTyping(el); // tu función de animación
-            observer.unobserve(el); // solo una vez
+    // Optimizaciones para rendimiento en móviles
+    let ticking = false;
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateActiveNavLink);
+            ticking = true;
         }
+    }
+
+    function updateActiveNavLinkOptimized() {
+        updateActiveNavLink();
+        ticking = false;
+    }
+
+    // Reemplazar el listener de scroll original con la versión optimizada
+    window.removeEventListener('scroll', updateActiveNavLink);
+    window.addEventListener('scroll', requestTick, { passive: true });
+
+    // Manejar cambios de orientación en móviles
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            checkVisibility();
+        }, 100);
+    });
+
+    // Optimizar resize events
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            checkVisibility();
+        }, 150);
     });
 });
 
-const target = document.getElementById('typedText');
-observer.observe(target);
-
-// Función para copiar email al portapapeles
+// Función para copiar email al portapapeles con mejoras para móviles
 function copyEmail() {
     const emailBtn = document.getElementById('copyEmailBtn');
     const email = emailBtn.getAttribute('data-email');
@@ -366,37 +373,60 @@ function copyEmail() {
         navigator.clipboard.writeText(email).then(() => {
             showCopySuccess();
         }).catch(() => {
-            // Fallback si falla
             fallbackCopyEmail(email);
         });
     } else {
-        // Fallback para navegadores más antiguos
         fallbackCopyEmail(email);
     }
 }
 
-// Función fallback para copiar
+// Función fallback para copiar mejorada
 function fallbackCopyEmail(email) {
     const textArea = document.createElement('textarea');
     textArea.value = email;
     textArea.style.position = 'fixed';
     textArea.style.opacity = '0';
+    textArea.style.left = '-9999px'; // Mover fuera de la pantalla
+    textArea.setAttribute('readonly', '');
+    textArea.style.pointerEvents = 'none';
+    textArea.style.fontSize = '16px'; // Prevenir zoom en iOS
+
     document.body.appendChild(textArea);
-    textArea.select();
+
+    // Para dispositivos móviles
+    if (/ipad|iphone/i.test(navigator.userAgent)) {
+        textArea.contentEditable = true;
+        textArea.readOnly = false;
+        const range = document.createRange();
+        range.selectNodeContents(textArea);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+    } else {
+        textArea.select();
+    }
 
     try {
-        document.execCommand('copy');
-        showCopySuccess();
+        const successful = document.execCommand('copy');
+        if (successful) {
+            showCopySuccess();
+        } else {
+            throw new Error('Copy command failed');
+        }
     } catch (err) {
         console.error('Error al copiar email:', err);
         // Mostrar el email para que el usuario lo copie manualmente
-        alert(`Por favor copia manualmente: ${email}`);
+        if (window.confirm(`No se pudo copiar automáticamente.\n¿Quieres ver el email para copiarlo manualmente?\n\nEmail: ${email}`)) {
+            // En móviles, mostrar el email de forma más visible
+            alert(`Email: ${email}`);
+        }
     }
 
     document.body.removeChild(textArea);
 }
 
-// Mostrar mensaje de éxito
+// Mostrar mensaje de éxito mejorado
 function showCopySuccess() {
     const successMsg = document.getElementById('copySuccess');
     const copyBtn = document.getElementById('copyEmailBtn');
@@ -404,30 +434,60 @@ function showCopySuccess() {
     // Mostrar mensaje
     successMsg.classList.remove('d-none');
 
+    // Vibrar en dispositivos móviles que lo soporten
+    if ('vibrate' in navigator) {
+        navigator.vibrate([100, 50, 100]);
+    }
+
     // Cambiar temporalmente el texto del botón
     const originalText = copyBtn.innerHTML;
     copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>¡Copiado!';
     copyBtn.classList.add('btn-success');
-    copyBtn.classList.remove('btn-outline-secondary');
+    copyBtn.classList.remove('btn-secondary');
+    copyBtn.disabled = true;
 
     // Restaurar después de 3 segundos
     setTimeout(() => {
         successMsg.classList.add('d-none');
         copyBtn.innerHTML = originalText;
         copyBtn.classList.remove('btn-success');
-        copyBtn.classList.add('btn-outline-secondary');
+        copyBtn.classList.add('btn-secondary');
+        copyBtn.disabled = false;
     }, 3000);
 }
+
+// Función mejorada para mostrar aviso de WhatsApp
 function mostrarAviso(event) {
-    event.preventDefault(); // Evita que abra el link real
+    event.preventDefault();
 
-    // Email a copiar
     const email = "byr.martinez@duocuc.cl";
+    const mensaje = `Esta funcionalidad aún no está lista.\n\nPuedes contactarme al email:\n${email}\n\n¿Quieres copiar el email al portapapeles?`;
 
-    // Copiar al portapapeles
-    navigator.clipboard.writeText(email).then(() => {
-        alert("Esta funcionalidad aún no está lista.\nPuedes contactarme al email: " + email + "\n\nEl correo ya fue copiado al portapapeles ✅");
-    }).catch(() => {
-        alert("Esta funcionalidad aún no está lista.\nPuedes contactarme al email: " + email);
-    });
+    if (confirm(mensaje)) {
+        // Intentar copiar al portapapeles
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(email).then(() => {
+                alert("¡Email copiado al portapapeles!");
+                // Vibrar si está disponible
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(200);
+                }
+            }).catch(() => {
+                alert(`Email: ${email}\n\n(Copia manualmente)`);
+            });
+        } else {
+            // Fallback para navegadores sin soporte
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert("¡Email copiado al portapapeles!");
+            } catch (err) {
+                alert(`Email: ${email}\n\n(Copia manualmente)`);
+            }
+            document.body.removeChild(textArea);
+        }
+    }
 }

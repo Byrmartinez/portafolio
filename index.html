@@ -39,14 +39,13 @@
 
 <body data-bs-theme="dark">
     <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
-        <div class="container text-center">
+        <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#hero" data-section-index="0">
                 <img type="image/x-icon" src="assets/img/icono/ico_ligth.png" alt="Logo" width="30" height="30"
                     class="me-2 slow-flip">
                 Portafolio
             </a>
-            <!--a class="navbar-brand" href="#hero" data-section-index="0">Portafolio</a--> <button
-                class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,211 +81,206 @@
 
     <main>
         <section id="hero"
-            class="carousel-section d-flex align-items-center justify-content-center text-center text-white row">
-            <div class="container section-content col-xl-8 col-lg-8 col-md-8 col-sm-8">
-
-                <h1 class="matrix-effect">Hola, soy
-                    B.Martínez</h1>
-                <div class="code-snippet">
-                    <!--h1 class="display-3 fw-bold animated-hero-title float-1 animated-hero-name">Hola, soy B.Martínez
-                    </h1-->
-                    <p class="lead fs-4 mb-4 animated-hero-subtitle float-1">Desarrollador Junior Creando Experiencias
-                        Web
-                        modernas.</p>
-                    <a href="#proyectos" class="btn loading-button tech-icon-proy"
-                        data-navigate-to-section="1">Proyectos</a>
+            class="carousel-section d-flex align-items-center justify-content-center text-center text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-10 col-12">
+                        <h1 class="matrix-effect">Hola, soy B.Martínez</h1>
+                        <div class="code-snippet">
+                            <p class="lead fs-4 mb-4 animated-hero-subtitle float-1">Desarrollador Junior Creando
+                                Experiencias Web modernas.</p>
+                            <a href="#proyectos" class="btn loading-button tech-icon-proy"
+                                data-navigate-to-section="1">Proyectos</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </section>
 
-        <section id="proyectos" class="carousel-section py-5 row">
-            <div class="container section-content col-xl-8 col-lg-8 col-md-8 col-sm-8">
+        <section id="proyectos" class="carousel-section py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-12">
+                        <div class="row g-4 justify-content-center">
+                            <div><br><br></div>
+                            <div class="col-xl-4 col-lg-6 col-md-8 col-12 project-card-container animated-on-scroll">
+                                <div class="card h-100 shadow-sm project-card">
+                                    <img src="assets/img/proyectos/proyecto1.png" class="card-img-top" loading="lazy"
+                                        alt="Imagen del Proyecto 1: Dataviz - Visualización de Datos">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title fw-bold">Dataviz</h5>
+                                        <p class="card-text">Landing page interactiva diseñada para explorar
+                                            y analizar datos en tiempo real. Desarrollado con HTML, CSS y JavaScript,
+                                            Bootstrap para responsividad y Chart.js para visualizacion dinámica.</p>
+                                        <div class="d-flex flex-column mt-auto">
+                                            <a href="https://byrmartinez.github.io/DataViz/" target="_blank"
+                                                class="btn btn-outline-primary rounded-pill"
+                                                rel="noopener noreferrer">Ver
+                                                Proyecto <i class="fas fa-arrow-right ms-1"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="col-xl-4 col-lg-6 col-md-8 col-12 project-card-container animated-on-scroll">
+                                <div class="card h-100 shadow-sm project-card">
+                                    <img src="assets/img/proyectos/proyecto2.png" class="card-img-top" loading="lazy"
+                                        alt="Imagen del Proyecto 2: IAparaTodos - Aplicación sobre IA">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title fw-bold">IAparaTodos</h5>
+                                        <p class="card-text">Esta landing page es una introducción accesible a la
+                                            Inteligencia
+                                            Artificial, diseñada para todo público. Desarrollado desde cero con HTML,
+                                            CSS,
+                                            JavaScript y Bootstrap, presenta conceptos clave de la IA y sus aplicaciones
+                                            cotidianas.</p>
+                                        <div class="d-flex flex-column mt-auto">
+                                            <a href="https://byrmartinez.github.io/iaParaTodos/" target="_blank"
+                                                class="btn btn-outline-primary rounded-pill"
+                                                rel="noopener noreferrer">Ver
+                                                Proyecto <i class="fas fa-arrow-right ms-1"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="row g-4 justify-content-center">
-                    <div><br></div>
-
-                    <div class="col-xl-4 col-lg-4 col-md-4 project-card-container animated-on-scroll">
-                        <div class="card h-100 shadow-sm project-card">
-                            <img src="assets/img/proyectos/proyecto1.png"
-                                class="card-img-top col-xl-4 col-lg-4 col-md-8" loading="lazy"
-                                alt="Imagen del Proyecto 1: Dataviz - Visualización de Datos">
-                            <div class="card-body d-flex flex-column col-xl-12 col-lg-12 col-md-12">
-
-                                <h5 class="card-title fw-bold">Dataviz</h5>
-                                <p class="card-text">Landing page interactiva diseñada para explorar
-                                    y analizar datos en tiempo real. Desarrollado con HTML, CSS y JavaScript,
-                                    Bootstrap para responsividad y Chart.js para visualizacion dinámica.</p>
-                                <br>
-                                <div class="d-flex flex-column">
-                                    <a href="https://byrmartinez.github.io/DataViz/" target="_blank"
-                                        class="btn btn-outline-primary rounded-pill mt-auto "
-                                        rel="noopener noreferrer">Ver
-                                        Proyecto <i class="fas fa-arrow-right ms-1"></i></a>
+                            <div class="col-xl-4 col-lg-6 col-md-8 col-12 project-card-container animated-on-scroll">
+                                <div class="card h-100 shadow-sm project-card">
+                                    <img src="https://placehold.co/600x400/e74c3c/ffffff?text=Próximamente"
+                                        class="card-img-top" loading="lazy"
+                                        alt="Imagen de proyecto futuro, indica 'Próximamente'.">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title fw-bold">Nuevo Desafío</h5>
+                                        <p class="card-text">Actualmente trabajando en algo emocionante. ¡Vuelve pronto
+                                            para más
+                                            detalles! Este proyecto utilizará React.</p>
+                                        <div class="d-flex flex-column mt-auto">
+                                            <button class="btn btn-outline-secondary rounded-pill"
+                                                disabled>Próximamente</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 project-card-container animated-on-scroll">
-                        <div class="card h-100 shadow-sm project-card">
-                            <img src="assets/img/proyectos/proyecto2.png"
-                                class="card-img-top col-xl-4 col-lg-4 col-md-8" loading="lazy"
-                                alt="Imagen del Proyecto 2: IAparaTodos - Aplicación sobre IA">
-                            <div class="card-body d-flex flex-column col-xl-12 col-lg-12 col-md-12">
-                                <h5 class="card-title fw-bold">IAparaTodos</h5>
-                                <p class="card-text">Esta landing page es una introducción accesible a la Inteligencia
-                                    Artificial, diseñada para todo público. Desarrollado desde cero con HTML, CSS,
-                                    JavaScript y Bootstrap, presenta conceptos clave de la IA y sus aplicaciones
-                                    cotidianas.</p>
-                                <div class="d-flex flex-column">
-                                    <a href="https://byrmartinez.github.io/iaParaTodos/" target="_blank"
-                                        class="btn btn-outline-primary rounded-pill mt-auto"
-                                        rel="noopener noreferrer">Ver
-                                        Proyecto <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-4 col-md-4 project-card-container animated-on-scroll">
-                        <div class="card h-100 shadow-sm project-card">
-                            <img src="https://placehold.co/600x400/e74c3c/ffffff?text=Próximamente" class="card-img-top"
-                                loading="lazy" alt="Imagen de proyecto futuro, indica 'Próximamente'.">
-                            <div class="card-body d-flex flex-column col-xl-12 col-lg-12 col-md-12">
-                                <h5 class="card-title fw-bold">Nuevo Desafío</h5>
-                                <p class="card-text">Actualmente trabajando en algo emocionante. ¡Vuelve pronto para más
-                                    detalles! Este proyecto utilizará React.</p>
-                                <br><br><br>
-                                <div class="d-flex flex-column">
-                                    <button class="btn btn-outline-secondary rounded-pill mt-auto"
-                                        disabled>Próximamente</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-                <div><br></div>
-                <div><br></div>
-                <div><br></div>
             </div>
         </section>
 
         <section id="sobre-mi" class="carousel-section py-5 bordes">
-            <div class="container section-content">
-                <div class="row align-items-center r-background">
-                    <div
-                        class="col-md-4 col-lg-4 col-xl-4 text-center mb-4 mb-md-0 animated-on-scroll about-image-container">
-                        <img src="assets/img/developer/developer.png" class="img-fluid rounded-circle shadow"
-                            alt="Foto de Byron Martínez, Desarrollador Junior">
-                    </div>
-                    <div class="col-md-8 col-lg-8 col-xl-8 animated-on-scroll typedText">
-                        <p class="lead about-typewriter-text invisible"
-                            data-typewriter-text="Ingeniero Informático recién egresado, apasionado por transformar ideas en soluciones digitales robustas y centradas en el usuario. Durante mi formación, he desarrollado una sólida base en tecnologías clave para el desarrollo web. Actualmente, busco activamente una oportunidad profesional para aplicar mis conocimientos, crecer y contribuir a proyectos innovadores en la industria tecnológica.">
-                        </p>
-                        <div class="tech-icons-container mt-4">
-                            <i class="fab fa-html5 fa-3x mx-2 tech-icon" title="HTML5"></i>
-                            <i class="fab fa-css3-alt fa-3x mx-2 tech-icon" title="CSS3"></i>
-                            <i class="fab fa-js fa-3x mx-2 tech-icon" title="JavaScript"></i>
-                            <i class="fab fa-bootstrap fa-3x mx-2 tech-icon" title="Bootstrap"></i>
-                            <i class="fab fa-node-js fa-3x mx-2 tech-icon" title="Node.js"></i>
-                            <i class="fab fa-python fa-3x mx-2 tech-icon" title="Python"></i>
+            <div><br><br></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-12">
+                        <div class="row align-items-center r-background">
+                            <div
+                                class="col-md-4 col-12 text-center mb-4 mb-md-0 animated-on-scroll about-image-container">
+                                <img src="assets/img/developer/developer.png" class="img-fluid rounded-circle shadow"
+                                    alt="Foto de B.Martínez, Desarrollador Junior">
+                            </div>
+                            <div class="col-md-8 col-12 animated-on-scroll typedText">
+                                <p class="lead about-typewriter-text invisible"
+                                    data-typewriter-text="Ingeniero Informático recién egresado, apasionado por transformar ideas en soluciones digitales robustas y centradas en el usuario. Durante mi formación, he desarrollado una sólida base en tecnologías clave para el desarrollo web. Actualmente, busco activamente una oportunidad profesional para aplicar mis conocimientos, crecer y contribuir a proyectos innovadores en la industria tecnológica.">
+                                </p>
+                                <div class="tech-icons-container mt-4">
+                                    <i class="fab fa-html5 fa-3x mx-2 tech-icon" title="HTML5"></i>
+                                    <i class="fab fa-css3-alt fa-3x mx-2 tech-icon" title="CSS3"></i>
+                                    <i class="fab fa-js fa-3x mx-2 tech-icon" title="JavaScript"></i>
+                                    <i class="fab fa-bootstrap fa-3x mx-2 tech-icon" title="Bootstrap"></i>
+                                    <i class="fab fa-node-js fa-3x mx-2 tech-icon" title="Node.js"></i>
+                                    <i class="fab fa-python fa-3x mx-2 tech-icon" title="Python"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
         <section id="contacto" class="carousel-section py-5 bordes">
-            <div class="container section-content">
+            <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8 animated-on-scroll text-center">
-                        <div><br></div>
-                        <div><br></div>
-                        <div><br></div>
-                        <p class="lead fs-4 mb-4 texto-1"> ¿Tienes una idea o proyecto en mente? Hablemos directamente.
+                    <div><br><br></div>
+                    <div><br><br></div>
+                    <div><br><br></div>
+                    <div><br><br></div>
+                    <div class="col-lg-8 col-md-10 col-12 animated-on-scroll text-center">
+                        <p class="lead fs-4 mb-4 texto-1">¿Tienes una idea o proyecto en mente? Hablemos directamente.
                         </p>
-                        <div><br></div>
-                        <div><br></div>
-                        <div><br></div>
                         <div class="d-grid gap-3 col-md-8 mx-auto">
-                            <!-- WhatsApp Button -->
-                            <!--a href="https://wa.me/56912345678?text=Hola%20B.%20Martinez,%20vi%20tu%20portafolio%20y%20quiero%20hablar%20sobre%20un%20proyecto"
-                                class="btn btn-success btn-lg rounded-pill float-1" target="_blank"
-                                rel="noopener noreferrer">
-                                <i class="fab fa-whatsapp me-2"></i> Enviar mensaje por WhatsApp
-                            </a-->
                             <a href="#" class="btn btn-success btn-lg rounded-pill float-1"
                                 onclick="mostrarAviso(event)">
                                 <i class="fab fa-whatsapp me-2"></i> Enviar mensaje por WhatsApp
                             </a>
 
-                            <!-- Copy Email Button -->
                             <button id="copyEmailBtn" class="btn btn-secondary btn-lg rounded-pill email-copy"
                                 data-email="byr.martinez@duocuc.cl" onclick="copyEmail()">
                                 <i class="fas fa-copy me-2"></i> Copiar Email
                             </button>
 
-                            <!-- Success message (initially hidden) -->
                             <div id="copySuccess" class="alert alert-success d-none" role="alert">
                                 <i class="fas fa-check me-2"></i>¡Email copiado al portapapeles!
                             </div>
-
-                            <div><br></div>
-                            <div><br></div>
-                            <div><br></div>
-                            <div><br></div>
                         </div>
-                        <div><br></div>
-                        <div><br></div>
-                        <div><br></div>
                     </div>
+                    <div><br><br></div>
+                    <div><br><br></div>
+                    <div><br><br></div>
+                    <div><br><br></div>
                 </div>
             </div>
         </section>
-
 
         <section id="bitacora-ia" class="py-5 bg-dark text-white">
             <div class="container">
-                <h2 class="text-center fw-bold mb-4">Bitácora IA</h2>
-                <p class="text-center lead mb-5">Exploro y documento lo que aprendo sobre inteligencia artificial. Desde
-                    conceptos básicos hasta ideas experimentales.</p>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card bg-secondary text-white h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">¿Qué es un modelo de lenguaje?</h5>
-                                <p class="card-text">Una introducción simple para entender cómo funcionan herramientas
-                                    como ChatGPT.</p>
-                                <a href="post/post-1.html" class="btn btn-outline-light btn-sm mt-3">Leer más</a>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h2 class="text-center fw-bold mb-4">Bitácora IA</h2>
+                        <p class="text-center lead mb-5">Exploro y documento lo que aprendo sobre inteligencia
+                            artificial. Desde
+                            conceptos básicos hasta ideas experimentales.</p>
+                        <div class="row g-4">
+                            <div class="col-md-4 col-12">
+                                <div class="card bg-secondary text-white h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">¿Qué es un modelo de lenguaje?</h5>
+                                        <p class="card-text">Una introducción simple para entender cómo funcionan
+                                            herramientas
+                                            como ChatGPT.</p>
+                                        <a href="post/post-1.html" class="btn btn-outline-light btn-sm mt-3">Leer
+                                            más</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-secondary text-white h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">Primeros pasos con GPT</h5>
-                                <p class="card-text">Cómo empecé a experimentar con prompts, resultados inesperados y
-                                    aprendizajes clave.</p>
-                                <a href="post/post-2.html" class="btn btn-outline-light btn-sm mt-3">Leer más</a>
+                            <div class="col-md-4 col-12">
+                                <div class="card bg-secondary text-white h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Primeros pasos con GPT</h5>
+                                        <p class="card-text">Cómo empecé a experimentar con prompts, resultados
+                                            inesperados y
+                                            aprendizajes clave.</p>
+                                        <a href="post/post-2.html" class="btn btn-outline-light btn-sm mt-3">Leer
+                                            más</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-secondary text-white h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">Mis herramientas favoritas de IA</h5>
-                                <p class="card-text">Un vistazo a las apps y plataformas que uso para aprender, crear y
-                                    experimentar.</p>
-                                <a href="post/post-3.html" class="btn btn-outline-light btn-sm mt-3">Leer más</a>
+                            <div class="col-md-4 col-12">
+                                <div class="card bg-secondary text-white h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Mis herramientas favoritas de IA</h5>
+                                        <p class="card-text">Un vistazo a las apps y plataformas que uso para aprender,
+                                            crear y
+                                            experimentar.</p>
+                                        <a href="post/post-3.html" class="btn btn-outline-light btn-sm mt-3">Leer
+                                            más</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-
     </main>
 
     <footer class="py-4 text-center fixed-bottom">
@@ -297,7 +291,6 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
-
 
 </body>
 
